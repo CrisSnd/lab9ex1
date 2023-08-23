@@ -7,45 +7,43 @@ using System.Threading.Tasks;
 
 namespace lab9ex1
 {
-    internal class ContEconomii 
+    internal class ContEconomii : ContBancar
     {
-        private double rataDobanda=4;
-        private int depunereContEconomii;
-        private double soldContEconomii;
-        public double sold;
-       
+        private int rataDobanzii;
 
-        public void GetDepunereContEconomii()
-        {
-            Console.WriteLine("Introduceti suma pentru depunere:");
-            depunereContEconomii = int.Parse(Console.ReadLine());
+
+        public ContEconomii(int rataDobanzii)
+        { 
+            this.rataDobanzii = rataDobanzii;
         }
 
-
-         public void SoldContEconomii()
+        public override void ExtragereNumerar(decimal suma)
         {
-          
-           double calcDobanda = (depunereContEconomii * rataDobanda)/100;
-           double sold=depunereContEconomii+calcDobanda;
-              
-           Console.WriteLine($"Soldul d-voastra este {sold} RON.");
-
-
-
-           Console.WriteLine("Introduceti 'DA'pentru repetare depunere.");
-            string repetareDepunere;
-            repetareDepunere = Console.ReadLine();
-
-            if (repetareDepunere == "DA")
+            if (suma<0) 
             {
-                ContBancar contB=new ContBancar();
-                contB.AlegereTipCont();
-            } 
-                
+                Console.WriteLine("Suma Invalida");
+                return;
+            }
 
+            if (suma > sold)
+            {
+                Console.WriteLine("Suma pentru extragere prea mare");
+                return;
+            }
+             sold-=suma;
         }
 
-    }
+        public override bool DepunereNumerar(decimal suma) 
+        {
+            if (base.DepunereNumerar(suma))
+            {
+                sold = sold * (100.0m + rataDobanzii) / 100.0m;
+                return true;
+            }
+            return false;
+        }
+         
+    }    
               
  }
  

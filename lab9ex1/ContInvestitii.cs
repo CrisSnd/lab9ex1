@@ -1,20 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace lab9ex1
 {
-    internal class ContInvestitii : ContBancar
+    internal class ContInvestitii : ContEconomii
     {
-        private int termenExtragereContInvestitii;
+        private int dayOfExtraction;
 
-
-        public ContInvestitii  (int termenExtragereContInvestitii) 
-            
+        public ContInvestitii(int rata, int dayOfExtraction):base(rata)
         {
-            this.termenExtragereContInvestitii= termenExtragereContInvestitii;
+          
         }
+
+        public override void ExtragereNumerar(decimal suma)
+        {
+            if (DateTime.UtcNow.Day < dayOfExtraction)
+            {
+                Console.WriteLine("Termenul de retragere nu a fost atins");
+                return;
+            }
+            base.ExtragereNumerar (suma);
+
+        }
+
     }
 }

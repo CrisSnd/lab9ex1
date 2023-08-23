@@ -8,70 +8,38 @@ namespace lab9ex1
 {
     class ContBancar
     {
-        private string numeCont;
-        private int soldCurent;
-        private int depunereCont;
-        private int extragereCont;
-       
-      
+
+    protected decimal sold = 0.0m;
 
 
-        public void AfisareTipCont()
+        public virtual bool DepunereNumerar(decimal suma)
         {
-            Console.WriteLine("1. Cont Economii");
-            Console.WriteLine("2. Cont Curent");
-            Console.WriteLine("3. Cont Investitii");
+            if (suma < 0)
+            {
+                Console.WriteLine("Suma invalida");
+                return false;
+            }
+
+            sold += suma;
+            return true;
         }
 
-        public void AlegereTipCont()
-        {
-            int numarTipCont;
-            Console.WriteLine("\n Introduceti cifra corespunzatoare tipului de cont:");
-            numarTipCont = int.Parse(Console.ReadLine());
-
-            ContEconomii contE = new ContEconomii();
-
-            if (numarTipCont == 1)
+        public virtual void ExtragereNumerar(decimal suma)
+        { 
+            if (suma < 0)
             {
-                Console.WriteLine("Ati ales Contul de Economii");
-                
-                contE.GetDepunereContEconomii();
-
-               double cont= contE.sold;
+                Console.WriteLine("Suma invalida");
+                return;
             }
 
-
-            else if (numarTipCont == 2)
+            if (suma > sold)
             {
-                Console.WriteLine("Ati ales Contul Curent");
+             Console.WriteLine("Suma pentru extragere este prea mare");
+                return;
             }
-
-            else if (numarTipCont == 3)
-            {
-                Console.WriteLine(" Ati ales Contul de Investitii");
-            }
-
-            else
-            {
-                Console.WriteLine("Introduceti corect cifra corespunzatoare tipului de cont!");
-            }
-        }
-        
-
-
-
-        public int GetSumaExtrasa
-        {
-            get; set;
 
         }
 
-
-        public  int GetSoldCont
-        {
-            get; set;
-
-        }
 
     }
 

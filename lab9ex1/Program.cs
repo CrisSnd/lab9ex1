@@ -32,9 +32,8 @@ namespace MyApp
 
 
             ContBancar contB = new ContBancar();
-            contB.AfisareTipCont();
-            contB.AlegereTipCont();
-
+            contB.DepunereNumerar(100);
+            contB.ExtragereNumerar(50);
         }
     }
 

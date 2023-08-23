@@ -6,14 +6,24 @@ using System.Threading.Tasks;
 
 namespace lab9ex1
 {
-    internal class ContCurent
+    internal class ContCurent:ContBancar
     {
-        private int limitaPlafon;
-       
-
-    public ContCurent(int limitaPlafon)
+        public override void ExtragereNumerar(decimal suma)
         {
-            this.limitaPlafon = limitaPlafon;
+            if (suma < 0)
+            {
+                Console.WriteLine("Suma invalida.");
+                return;
+            }
+
+            if (suma > sold+5000)
+            {
+                Console.WriteLine("Suma pentru extragere este prea mare");
+                return;
+            }
+            sold -= suma;
+
         }
+
     }
 }
